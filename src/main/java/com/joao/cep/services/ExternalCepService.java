@@ -1,9 +1,7 @@
 package com.joao.cep.services;
 
 import com.joao.cep.dto.CepDataDTO;
-import com.joao.cep.entity.CepDataEntityAdapter;
 import com.joao.cep.integration.ViaCepService;
-import com.joao.cep.repository.CepDataRepository;
 import org.springframework.stereotype.Service;
 
 @Service
