@@ -22,7 +22,7 @@ public class ExternalCepService {
             return viaCepService.getCepData(cep);
         } catch (Exception ex){
             logger.error("Erro ao buscar dados do CEP na API externa ExternalCepService - getData()");
-            throw new RuntimeException("Erro ao buscar dados do CEP na API externa ExternalCepService - getData()");
+            throw new RuntimeException("Erro ao buscar dados do CEP na API externa ExternalCepService - getData() :" + ex.getMessage());
         }
     }
 }
