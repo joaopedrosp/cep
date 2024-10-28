@@ -6,11 +6,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "TB_CEP_DATA")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CepDataEntity {
 
     @Id

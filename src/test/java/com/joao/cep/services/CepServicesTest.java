@@ -24,6 +24,9 @@ public class CepServicesTest {
     @Mock
     private CepDataRepository cepDataRepository;
 
+    @Mock
+    private LogServices logger;
+
     @InjectMocks
     private CepServices cepServices;
 

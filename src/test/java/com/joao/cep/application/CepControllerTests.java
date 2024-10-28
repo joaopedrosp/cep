@@ -2,6 +2,7 @@ package com.joao.cep.application;
 
 import com.joao.cep.model.CepData;
 import com.joao.cep.services.CepServices;
+import com.joao.cep.services.LogServices;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -19,6 +20,9 @@ class CepControllerTests {
 
 	@Mock
 	private CepServices cepServices;
+
+	@Mock
+	private LogServices logger;
 
 	@InjectMocks
 	private CepController cepController;

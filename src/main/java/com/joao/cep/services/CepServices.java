@@ -1,5 +1,7 @@
 package com.joao.cep.services;
 
+import com.joao.cep.dto.CepDataDTO;
+import com.joao.cep.entity.CepDataEntityAdapter;
 import com.joao.cep.model.CepData;
 import com.joao.cep.model.adapter.CepDataAdapter;
 import com.joao.cep.repository.CepDataRepository;
@@ -28,13 +30,19 @@ public class CepServices {
 
         return this.cepDataRepository.findByCep(cep)
                 .map(CepDataAdapter::from)
-                .orElseGet(() -> CepDataAdapter.from(this.externalCepService.getData(cep)));
+                .orElseGet(() -> this.getExternalCepInfo(cep));
     }
 
     public Set<CepData> findAllLocal(){
         return cepDataRepository.findAll().stream()
                 .map(CepDataAdapter::from)
                 .collect(Collectors.toSet());
+    }
+
+    private CepData getExternalCepInfo(final String cep){
+        final CepDataDTO cepDataDTO = this.externalCepService.getData(cep);
+        this.cepDataRepository.save(CepDataEntityAdapter.from(cepDataDTO));
+        return CepDataAdapter.from(cepDataDTO);
     }
 
 }

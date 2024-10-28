@@ -11,16 +11,20 @@ public class ExternalCepService {
 
     private final ViaCepService viaCepService;
 
-    private final CepDataRepository cepDataRepository;
+    private final LogServices logger;
 
-    public ExternalCepService(ViaCepService viaCepService, CepDataRepository cepDataRepository) {
+    public ExternalCepService(ViaCepService viaCepService, LogServices logger) {
         this.viaCepService = viaCepService;
-        this.cepDataRepository = cepDataRepository;
+        this.logger = logger;
     }
 
     public CepDataDTO getData(final String cep){
-        final CepDataDTO cepDataDTO = viaCepService.getCepData(cep);
-        cepDataRepository.save(CepDataEntityAdapter.from(cepDataDTO));
-        return cepDataDTO;
+        logger.info("Inicio consulta externa ExternalCepService - getData()");
+        try{
+            return viaCepService.getCepData(cep);
+        } catch (Exception ex){
+            logger.error("Erro ao buscar dados do CEP na API externa ExternalCepService - getData()");
+            throw new RuntimeException("Erro ao buscar dados do CEP na API externa ExternalCepService - getData()");
+        }
     }
 }

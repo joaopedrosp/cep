@@ -2,8 +2,7 @@ package com.joao.cep.application;
 
 import com.joao.cep.model.CepData;
 import com.joao.cep.services.CepServices;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.joao.cep.services.LogServices;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,17 +14,18 @@ import java.util.Set;
 @RequestMapping("/cep")
 public class CepController {
 
-    private static final Logger logger = LogManager.getLogger(CepController.class);
-
     private final CepServices cepServices;
 
-    public CepController(CepServices cepServices) {
+    private final LogServices logger;
+
+    public CepController(CepServices cepServices, LogServices logger) {
         this.cepServices = cepServices;
+        this.logger = logger;
     }
 
     @GetMapping("/{cep}")
     public CepData getCepData(@PathVariable final String cep){
-        logger.info("Processando CepController - getCepData()", cep);
+        logger.info("Iniciando CepController - getCepData() para CEP: " + cep);
         return cepServices.getCep(cep);
     }
 
