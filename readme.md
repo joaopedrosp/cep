@@ -21,6 +21,6 @@ Este projeto implementa uma solução para consulta de CEPs
 <details open>
       <summary><b>Arquitetura</b></summary> "
 
-![Arquitetura](src/main/resources/static/img/arquitetura.png)
+![Arquitetura](src/main/resources/static/arquitetura.png)
 </details>
 
