@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+    container_name: cep-container
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=postgres-db
+      - DB_PORT=5432
+      - DB_NAME=cep
+      - DB_USER=admin
+      - DB_PASSWORD=1234
+      - MONGODB_URI=mongodb://mongo:27017/logsDatabase
+    depends_on:
+      - postgres-db
+      - mongo
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin123
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app-network
+
+  postgres-db:
+    image: postgres:latest
+    container_name: postgres-db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=cep
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo_data:
