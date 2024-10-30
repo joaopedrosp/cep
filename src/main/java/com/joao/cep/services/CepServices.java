@@ -41,8 +41,12 @@ public class CepServices {
 
     private CepData getExternalCepInfo(final String cep){
         final CepDataDTO cepDataDTO = this.externalCepService.getData(cep);
-        this.cepDataRepository.save(CepDataEntityAdapter.from(cepDataDTO));
+        this.save(cepDataDTO);
         return CepDataAdapter.from(cepDataDTO);
+    }
+
+    private void save(final CepDataDTO cepData){
+        this.cepDataRepository.save(CepDataEntityAdapter.from(cepData));
     }
 
 }

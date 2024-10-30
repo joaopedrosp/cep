@@ -8,7 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "TB_LOG")
@@ -22,9 +24,9 @@ public class Log {
     @Column(name = "UUID", nullable = false)
     private String uuid;
 
-    @CreatedDate
+    @CreationTimestamp
     @Column(name = "DT")
-    private java.sql.Date dtCreation;
+    private LocalDateTime dtCreation;
 
     @Column(name = "SEVERITY")
     private String severity;

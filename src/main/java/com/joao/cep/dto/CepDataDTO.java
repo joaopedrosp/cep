@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Objects;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -23,4 +25,8 @@ public class CepDataDTO {
     private String gia;
     private String ddd;
     private String siafi;
+
+    public boolean isNull(){
+        return Objects.isNull(cep);
+    }
 }

@@ -8,6 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "TB_CEP_DATA")
@@ -57,7 +60,8 @@ public class CepDataEntity {
     @Column(name = "SIAFI")
     private String siafi;
 
+    @CreationTimestamp
     @Column(name = "DT_CREATION")
-    private java.sql.Date dtCreation;
+    private LocalDateTime dtCreation;
 }
 

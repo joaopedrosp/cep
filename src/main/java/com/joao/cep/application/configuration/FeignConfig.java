@@ -1,6 +1,7 @@
 package com.joao.cep.application.configuration;
 
 import com.joao.cep.integration.ViaCepService;
+import com.joao.cep.services.decoder.ViaCepDecoder;
 import feign.Feign;
 import feign.Logger;
 import feign.Request;
@@ -30,7 +31,7 @@ public class FeignConfig {
     public ViaCepService viaCepService() {
         return Feign.builder()
                 .encoder(new JacksonEncoder())
-                .decoder(new JacksonDecoder())
+                .decoder(new ViaCepDecoder())
                 .options(requestOptions())
                 .logger(new feign.slf4j.Slf4jLogger(ViaCepService.class))
                 .logLevel(feignLoggerLevel())
